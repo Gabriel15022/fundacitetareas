@@ -20,9 +20,11 @@ CORS(app)
 
 # Configuración de la sesión para que funcione con Flask
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secrets.token_hex(16)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
+# Configuración de la base de datos
+# Intentará obtener la URL de conexión a la base de datos de una variable de entorno 'DATABASE_URL'.
+# Si no está definida, usará la base de datos SQLite local para desarrollo.
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
