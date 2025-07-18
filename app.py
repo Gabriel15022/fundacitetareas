@@ -322,7 +322,7 @@ if __name__ == '__main__':
             username_lower = dep.lower()
             if not User.query.filter_by(username=username_lower).first():
                 new_user = User(username=username_lower, departamento=dep)
-                new_user.set_password(username_lower) # Contraseña igual al usuario
+                new_user.set_password("fundacite") # Contraseña universal para todos los usuarios por defecto
                 db.session.add(new_user)
                 print(f"Usuario '{username_lower}' creado para el departamento '{dep}'")
         db.session.commit()
