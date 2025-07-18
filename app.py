@@ -324,6 +324,5 @@ if __name__ == '__main__':
                 new_user = User(username=username_lower, departamento=dep)
                 new_user.set_password("fundacite") # Contraseña universal para todos los usuarios por defecto
                 db.session.add(new_user)
-                print(f"Usuario '{username_lower}' creado para el departamento '{dep}'")
         db.session.commit()
-    app.run(debug=True, host='0.0.0.0', port=5000) # Asegúrate de que host='0.0.0.0' esté aquí
+        print("Usuarios por defecto creados/verificados con contraseña 'fundacite'.")
